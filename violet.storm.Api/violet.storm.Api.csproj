@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Violet.Storm.Domain\Violet.Storm.Domain.csproj" />
+    <ProjectReference Include="..\violet.storm.Data\violet.storm.Data.csproj" />
   </ItemGroup>  
 
 </Project>
