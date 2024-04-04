@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using violet.storm.Domain.Catalog;
 using violet.storm.data;
+using System.Data.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace violet.storm.Api.Controller {
     [ApiController]
@@ -73,16 +75,33 @@ namespace violet.storm.Api.Controller {
 
             item.AddRating(rating);
             _db.SaveChanges();
-            
+
             return Ok(item);
         }
-
+/*
         [HttpPut("{id:int}")]
         public IActionResult Put(int id, Item item){
             return NoContent();
         }
+*/     
+
+        [HttpPut("{id:int}")]
+        public IActionResult PutItem(int id,[FromBody] Item item){
+            if (id !=item.Id ){
+                return BadRequest();
+            }
+            if (_db.Items.Find(id) == null){
+                return NotFound();
+            }
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
+
+            return NoContent();
+            //return Ok(item);
+        }
 
         [HttpDelete("{id:int}")]
+
         public IActionResult Delete(int id){
             return NoContent();
     
