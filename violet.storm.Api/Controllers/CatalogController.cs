@@ -18,7 +18,7 @@ namespace violet.storm.Api.Controller {
 
             return Ok(_db.Items);
         }
-
+/*
         [HttpGet("{id:int}")]
         public IActionResult GetItem(int id){
             var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m);
@@ -26,7 +26,19 @@ namespace violet.storm.Api.Controller {
 
             return Ok(item);
         }
+ */
+
+ 
+        [HttpGet("{id:int}")]
+        public IActionResult GetItem(int id){
         
+            var item = _db.Items.Find(id);
+            if (item == null){
+                return NotFound();
+            }
+            return Ok(item);
+        }
+
         [HttpPost]
         public IActionResult Post(Item item){
 
