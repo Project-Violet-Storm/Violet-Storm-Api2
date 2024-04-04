@@ -39,10 +39,19 @@ namespace violet.storm.Api.Controller {
             return Ok(item);
         }
 
-        [HttpPost]
+/*        [HttpPost]
         public IActionResult Post(Item item){
 
             return Created("/Catalog/42", item);
+        }
+
+*/
+        [HttpPost]
+        public IActionResult Post(Item item){
+            _db.Items.Add(item);
+            _db.SaveChanges();
+            return Created($"/catalog/{item.Id}", item);
+
         }
 
         [HttpPost("{id:int}/ratings")]
