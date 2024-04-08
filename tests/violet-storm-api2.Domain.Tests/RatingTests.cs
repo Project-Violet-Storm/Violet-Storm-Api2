@@ -26,4 +26,12 @@ public class RatingTests
         // Arrange
         var rating = new Rating(0, "Mike", "Great fit!");
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Cannot_Create_Rating_With_Invalid_UserName()
+    {
+        // Arrange
+        var rating = new Rating(5, null, "Review");
+    }
 }

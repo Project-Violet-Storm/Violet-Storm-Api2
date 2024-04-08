@@ -29,4 +29,36 @@ public class ItemTests
         //Assert
         Assert.AreEqual(rating, item.Ratings[0]);
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Cannot_Create_Item_With_Invalid_Name()
+    {
+        // Arrange
+        var item = new Item(null, "Description", "Brand", 10.00m);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Cannot_Create_Item_With_Invalid_Description()
+    {
+        // Arrange
+        var item = new Item("Name", null, "Brand", 10.00m);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Cannot_Create_Item_With_Invalid_Brand()
+    {
+        // Arrange
+        var item = new Item("Name", "Description", null, 10.00m);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Cannot_Create_Item_With_Invalid_Price()
+    {
+        // Arrange
+        var item = new Item("Name", "Description", "Brand", -1);
+    }
 }

@@ -16,13 +16,13 @@ namespace violet.storm.Domain.Catalog {
 
         public Item(string name, string description, string brand, decimal price ){
             if(string.IsNullOrEmpty(name)){
-                throw new ArgumentNullException(name);
+                throw new ArgumentException(name);
             }
             if(string.IsNullOrEmpty(description)){
-                throw new ArgumentNullException(description);
+                throw new ArgumentException(description);
             }
             if(string.IsNullOrEmpty(brand)){
-                throw new ArgumentNullException(brand);
+                throw new ArgumentException(brand);
             }        
             if(price < 0.00m){
                 throw new ArgumentException("Price must be greater than zero.");
